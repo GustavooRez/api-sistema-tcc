@@ -67,7 +67,7 @@ module.exports = {
 
         await curso.save();
 
-        return res.status(200).json({ curso })
+        return res.json({ status: 200, curso })
       } else {
         return res.status(400).json({ error: "Preencha os campos obrigatórios" })
       }
@@ -83,6 +83,6 @@ module.exports = {
 
       await curso.destroy();
 
-      return res.json({ message: "Curso deletado com sucesso" });
+      return res.json({ status: 200, message: "Curso deletado com sucesso" });
     }
 }

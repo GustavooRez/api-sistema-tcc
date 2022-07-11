@@ -7,6 +7,7 @@ const PerfilProfessorController = require('./controllers/PerfilProfessorControll
 const ProjetoController = require('./controllers/ProjetoController')
 const UniversidadeController = require('./controllers/UniversidadeController')
 const InstitutoController = require('./controllers/InstitutoController')
+const CronogramaController = require('./controllers/CronogramaController')
 const verify = require('./controllers/AuthorizationController');
 const UsuarioTfgController = require('./controllers/UsuarioTfgController');
 const CursoController = require('./controllers/CursoController');
@@ -27,6 +28,7 @@ routes.post('/tfg/:id_tcc/partial-tcc', TfgController.storePartialTcc)
 routes.post('/university', UniversidadeController.store)
 routes.post('/institute', InstitutoController.store)
 routes.post('/course', CursoController.store)
+routes.post('/timeline', CronogramaController.store)
 
 //Gets
 routes.get('/users', verify, UsuarioController.indexAll)
@@ -47,14 +49,17 @@ routes.get('/tfg/search-status-orientation/:id_usuario', TfgController.statusOri
 routes.get('/tfg/search-partial-orientation/:id_usuario', TfgController.statusParcialOrientation)
 routes.get('/tfg/search-users-registration/:id_usuario', TfgController.searchUserRegistration)
 routes.get('/tfg/search-users-record/:id_usuario', TfgController.searchUserRecord)
+routes.get('/universitys', UniversidadeController.indexAll)
 routes.get('/universities', UniversidadeController.indexAll)
-routes.get('/universities/:id_universidade', UniversidadeController.index)
+routes.get('/universitys/:id_universidade', UniversidadeController.index)
 routes.get('/universities/:id_universidade/institutes', UniversidadeController.indexInstitutes)
 routes.get('/institute/:id_instituto', InstitutoController.index)
 routes.get('/institute/:id_instituto/courses', InstitutoController.indexCourses)
 routes.get('/institutes', InstitutoController.indexAll)
 routes.get('/courses', CursoController.indexAll)
 routes.get('/course/:id_curso', CursoController.index)
+routes.get('/timelines/:id_timeline', CronogramaController.index)
+routes.get('/timelines', CronogramaController.indexAll)
 
 // Update
 routes.put('/users/:id_usuario', verify, UsuarioController.update);
@@ -64,6 +69,7 @@ routes.put('/tfg/:id_tfg', verify, TfgController.update)
 routes.put('/universities/:id_universidade', UniversidadeController.update)
 routes.put('/institutes/:id_instituto', InstitutoController.update)
 routes.put('/courses/:id_curso', CursoController.update)
+routes.put('/timelines/:id_timeline', CronogramaController.update)
 
 // Deletes
 routes.delete('/users/:id_usuario', verify, UsuarioController.delete);
@@ -72,6 +78,7 @@ routes.delete('/user_tfg/:id_usuarioTfg', UsuarioTfgController.delete);
 routes.delete('/universities/:id_universidade', UniversidadeController.delete);
 routes.delete('/institutes/:id_instituto', InstitutoController.delete);
 routes.delete('/courses/:id_curso', CursoController.delete);
+routes.delete('/timelines/:id_timeline', CronogramaController.delete)
 
 
 module.exports = routes;

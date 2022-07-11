@@ -94,7 +94,7 @@ module.exports = {
 
           await instituto.save();
 
-          return res.status(200).json({ instituto });
+          return res.json({ status: 200, instituto });
         } else {
           return res.status(400).json({ error: "Preencha os campos obrigatórios" })
         }
@@ -114,7 +114,7 @@ module.exports = {
 
       await instituto.destroy();
 
-      return res.json({ message: "Instituto deletado com sucesso" });
+      return res.json({ status: 200, message: "Instituto deletado com sucesso" });
     }
   };
   

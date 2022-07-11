@@ -14,9 +14,9 @@ module.exports = {
         nome
       });
 
-      return res.status(200).json({ universidade });
+      return res.json({ status: 200, universidade });
     } else {
-      return res.status(400).json({ error: "Preencha os campos obrigatórios" });
+      return res.json({ status: 400, error: "Preencha os campos obrigatórios" });
     }
   },
   // A Função index é responsável por retornar os dados de uma universidade
@@ -73,14 +73,15 @@ module.exports = {
     const universidade = await Universidade.findByPk(id_universidade);
 
     if ( !universidade ) {
-      return res.stauts(400).json({ error: "Universidade não encontrada" });
+      return res.status(400).json({ error: "Universidade não encontrada" });
     } else {
       if ( nome !== "" ) {
         universidade.nome = nome;
 
         await universidade.save();
 
-        return res.status(200).json({ 
+        return res.json({ 
+          status: 200,
           message: "Universidade atualizada com sucesso",
           universidade
         });
@@ -101,6 +102,6 @@ module.exports = {
 
     await universidade.destroy();
 
-    return res.status(204).json({ message: "Universidade deletada com sucesso" });
+    return res.json({ status: 200, message: "Universidade deletada com sucesso" });
   },
 };
