@@ -240,7 +240,7 @@ module.exports = {
         const tfg = await Tfg.findByPk(usuarioTfg.id_tfg);
 
         let status = tfg.status;
-        const status_tfg = await StatusTfg.findByPk(status);
+        const status_tfg = await StatusTfg.findOne({where:{codigo:status}});
         let id = tfg.id;
         
         return res.json({ code: 200, status, id,status_tfg })
