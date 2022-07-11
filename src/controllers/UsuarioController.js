@@ -2,7 +2,8 @@
 const Usuario = require("../models/Usuario");
 const CodigoProfessor = require("../models/CodigoProfessor");
 const Tfg = require("../models/Tfg");
-const UsuarioTfg = require("../models/UsuarioTfg");
+const StatusTfg = require("../models/UsuarioTfg");
+const UsuarioTfg = require("../models/StatusTfg");
 const Test = require("../test/FunctionsTest");
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
@@ -239,9 +240,10 @@ module.exports = {
         const tfg = await Tfg.findByPk(usuarioTfg.id_tfg);
 
         let status = tfg.status;
+        const status_tfg = await StatusTfg.findByPk(status);
         let id = tfg.id;
         
-        return res.json({ code: 200, status, id })
+        return res.json({ code: 200, status, id,status_tfg })
       }
     }
   },
