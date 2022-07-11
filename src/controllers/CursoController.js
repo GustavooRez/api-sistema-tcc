@@ -1,7 +1,8 @@
 // Neste controlador é realizado todas as funções relacionadas a Curso
 
 const Curso = require("../models/Curso");
-const Instituto = require("../models/Instituto")
+const Instituto = require("../models/Instituto");
+const Cronograma = require("../models/Cronograma");
 const Test = require("../test/FunctionsTest");
 
 module.exports = {
@@ -50,6 +51,23 @@ module.exports = {
       const cursos = await Curso.findAll();
 
       return res.json(cursos);
+    },
+    async indexTimelines(req, res) {
+      const { id_curso } = req.params;
+
+      const curso = await Curso.findByPk(id_curso);
+
+      
+
+      if (curso) {
+        const cronogramas = await Cronograma.findAll({
+          where: { id_curso },
+        });
+
+        return res.json({ status: 200, cronogramas });
+      } else {
+        return res.json({ status: 400, error: "Cronograma não encontrado" });
+      }
     },
     async update(req, res) {
       let { nome, codigo } = req.body;
