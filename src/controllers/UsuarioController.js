@@ -157,7 +157,7 @@ module.exports = {
         <p>Ele pode ser utilizado apenas uma vez, então cuidado!<br><br> <p>Muito obrigado por utilizar o nosso sistema!</p>`,
       };
 
-      transporter.sendMail(mailOptions);
+      // transporter.sendMail(mailOptions);
       return res.json({ status: 200, codigo: codigo_usuario });
     } else {
       return res.json({
