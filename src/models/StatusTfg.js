@@ -6,7 +6,10 @@ class StatusTfg extends Model {
     super.init(
       {
         nome: DataTypes.STRING,
-        codigo: DataTypes.STRING
+        codigo: {
+          type: DataTypes.STRING,
+          primaryKey: true
+        }
       },
       {
         sequelize,
