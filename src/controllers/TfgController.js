@@ -399,5 +399,29 @@ module.exports = {
         message: "Não foram encontrados registros",
       });
     }
+  },
+  async searchOrientadorId(req, res) {
+    const { id_tfg } = req.params;
+
+    const tfg = await Tfg.findByPk(id_tfg);
+
+    var resultsTfg = await sequelize.query(
+      `SELECT Usuario.id FROM tfg as Tfg 
+        INNER JOIN usuario_tfg as UsuarioTfg ON Tfg.id = UsuarioTfg.id_tfg 
+        INNER JOIN usuario as Usuario ON UsuarioTfg.id_usuario = Usuario.id 
+        WHERE UsuarioTfg.id_funcao = 2 AND Tfg.id =:id_tfg`,
+      {
+        replacements: { id_tfg },
+        type: QueryTypes.SELECT,
+      }
+    );
+    if (resultsTfg.length !== 0) {
+      return res.json({ status: 200, resultsTfg });
+    } else {
+      return res.json({
+        status: 201,
+        message: "Não foram encontrados registros",
+      });
+    }
   }
 };

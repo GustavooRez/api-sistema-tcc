@@ -52,6 +52,7 @@ routes.get('/users/check/:id_usuario', UsuarioController.checkStatusTcc);
 routes.get('/tfg/search-status-orientation/:id_usuario', TfgController.statusOrientation)
 routes.get('/tfg/search-partial-orientation/:id_usuario', TfgController.statusParcialOrientation)
 routes.get('/tfg/search-users-registration/:id_usuario', TfgController.searchUserRegistration)
+routes.get('/tfg/search-orientador-id/:id_tfg', TfgController.searchOrientadorId)
 routes.get('/tfg/search-users-record/:id_usuario', TfgController.searchUserRecord)
 routes.get('/universitys', UniversidadeController.indexAll)
 routes.get('/universities', UniversidadeController.indexAll)

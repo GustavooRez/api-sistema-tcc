@@ -8,13 +8,13 @@ module.exports = {
     async store(req, res) {
         const { id_tfg, id_usuario, dia_horario } = req.body;
 
-        const usuario = await Usuario.findById(id_usuario);
+        const usuario = await Usuario.findByPk(id_usuario);
 
         if ( !usuario ) {
           return res.json({ status: 400, error: "Usuário não encontrado" });
         }
 
-        const tfg = await Tfg.findById(id_tfg);
+        const tfg = await Tfg.findByPk(id_tfg);
 
         if ( !tfg ) {
           return res.json({ status: 400, error: "Tfg não encontrado" });
@@ -22,7 +22,7 @@ module.exports = {
 
         if ( dia_horario !== "" ) {
           const banca = await Banca.create({ 
-            id_tcc,
+            id_tfg,
             id_usuario,
             dia_horario
           });
@@ -56,13 +56,13 @@ module.exports = {
       const { id_banca } = req.params;
       const { id_tfg, id_usuario, dia_horario } = req.body;
 
-      const usuario = await Usuario.findById(id_usuario);
+      const usuario = await Usuario.findByPk(id_usuario);
 
       if ( !usuario ) {
         return res.json({ status: 400, error: "Usuário não encontrado" });
       }
 
-      const tfg = await Tfg.findById(id_tfg);
+      const tfg = await Tfg.findByPk(id_tfg);
 
       if ( !tfg ) {
         return res.json({ status: 400, error: "Tfg não encontrado" });
