@@ -2,6 +2,7 @@
 
 const Curso = require("../models/Curso");
 const Cronograma = require("../models/Cronograma");
+const Atividade = require("../models/Atividade");
 
 module.exports = {
   // A Função store é responsável por fazer o armazenamento dos dados dos Cronogramas
@@ -44,6 +45,21 @@ module.exports = {
       return res.json({ status: 400, error: "Cronograma não encontrado" });
     }
   },
+  async indexActivities(req, res) {
+    const { id_cronograma } = req.params;
+
+    const cronograma = await Cronograma.findByPk(id_cronograma);
+
+    if (cronograma) {
+      const atividades = await Atividade.findAll({
+        where: { id_cronograma }
+      });
+
+      return res.json({ status: 200, atividades });
+    } else {
+      return res.json({ status: 400, error: "Cronograma não encontrado" });
+    }
+  },
   async indexAll(req, res) {
     const cronogramas = await Cronograma.findAll();
 
@@ -76,7 +92,7 @@ module.exports = {
     const cronograma = await Cronograma.findByPk(id_cronograma);
 
     if ( !cronograma ) {
-      return res.json({ status: 404, error: "Cronograma não encontrado" });
+      return res.status(400).json({ error: "Cronograma não encontrado" });
     }
 
     await cronograma.destroy();

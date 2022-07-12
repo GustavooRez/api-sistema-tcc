@@ -61,5 +61,18 @@ module.exports = {
     } else {
       return res.json({ status: 400, error: "Preencha os campos obrigatórios" });
     }
+  },
+  async delete(req, res) {
+    let { id_atividade } = req.params;
+
+    const atividade = await Atividade.findByPk(id_atividade);
+
+    if ( !atividade ) {
+      return res.json({ status: 404, error: "Atividade não encontrada" });
+    }
+
+    await atividade.destroy();
+
+    return res.json({ status: 200, atividade });
   }
 }
