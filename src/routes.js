@@ -12,6 +12,7 @@ const verify = require('./controllers/AuthorizationController');
 const UsuarioTfgController = require('./controllers/UsuarioTfgController');
 const CursoController = require('./controllers/CursoController');
 const AtividadeController = require('./controllers/AtividadeController');
+const BancaController = require('./controllers/BancaController');
 const routes = express.Router();
 
 // Posts
@@ -31,6 +32,7 @@ routes.post('/institute', InstitutoController.store)
 routes.post('/course', CursoController.store)
 routes.post('/timeline', CronogramaController.store)
 routes.post('/activity', AtividadeController.store)
+routes.post('/board', BancaController.store)
 
 //Gets
 routes.get('/users', verify, UsuarioController.indexAll)
@@ -66,6 +68,8 @@ routes.get('/courses/:id_curso/timelines', CursoController.indexTimelines)
 routes.get('/activities', AtividadeController.indexAll)
 routes.get('/activity/:id_atividade', AtividadeController.index)
 routes.get('/timelines/:id_cronograma/activities', CronogramaController.indexActivities)
+routes.get('/boards', BancaController.indexAll)
+routes.get('/board/:/id_banca', BancaController.index)
 
 // Update
 routes.put('/users/:id_usuario', verify, UsuarioController.update);
@@ -77,6 +81,7 @@ routes.put('/institutes/:id_instituto', InstitutoController.update)
 routes.put('/courses/:id_curso', CursoController.update)
 routes.put('/timelines/:id_timeline', CronogramaController.update)
 routes.put('/activities/:id_atividade', AtividadeController.update)
+routes.put('/boards/:id_banca', BancaController.update)
 
 // Deletes
 routes.delete('/users/:id_usuario', verify, UsuarioController.delete);
@@ -87,6 +92,7 @@ routes.delete('/institutes/:id_instituto', InstitutoController.delete);
 routes.delete('/courses/:id_curso', CursoController.delete);
 routes.delete('/timelines/:id_cronograma', CronogramaController.delete)
 routes.delete('/activities/:id_atividade', AtividadeController.delete)
+routes.delete('/boards/:id_banca', BancaController.delete)
 
 
 module.exports = routes;
