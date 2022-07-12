@@ -355,7 +355,7 @@ module.exports = {
       `SELECT Usuario.nome, Tfg.id FROM tfg as Tfg 
         INNER JOIN usuario_tfg as UsuarioTfg ON Tfg.id = UsuarioTfg.id_tfg 
         INNER JOIN usuario as Usuario ON UsuarioTfg.id_usuario = Usuario.id 
-        WHERE UsuarioTfg.id_funcao = 1 AND Tfg.status = "matricula_realizada" AND Usuario.id_curso =:id_curso`,
+        WHERE UsuarioTfg.id_funcao = 1 AND Tfg.status = "orientacao_aceita" AND Usuario.id_curso =:id_curso`,
       {
         replacements: { id_curso: usuarioCoordenador.id_curso },
         type: QueryTypes.SELECT,
