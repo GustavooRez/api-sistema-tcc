@@ -9,6 +9,10 @@ const Test = require("../test/FunctionsTest");
 module.exports = {
     // A Função store é responsável por fazer o armazenamento dos dados do Instituto
     async store(req, res) {
+      const resultsEntries = Test.institutoControllerValidateStoreEntries(req.body);
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       let { nome, id_universidade } = req.body;
 
       const universidade = await Universidade.findByPk(id_universidade);
@@ -31,12 +35,12 @@ module.exports = {
     },
     // A Função index é responsável por retornar os dados de um instituto
     async index(req, res) {
-      //   const resultsEntries = Test.institutoControllerValidateIndexEntries(
-      //     req.params
-      //   );
-      //   if (resultsEntries) {
-      //     return res.json(resultsEntries);
-      //   }
+        const resultsEntries = Test.institutoControllerValidateIndexEntries(
+          req.params
+        );
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       const { id_instituto } = req.params;
   
       const instituto = await Instituto.findByPk(id_instituto);
@@ -49,12 +53,12 @@ module.exports = {
     },
     // A Função indexCourses é responsável por retornar os cursos apartir de um instituto
     async indexCourses(req, res) {
-      //   const resultsEntries = Test.universidadeControllerValidateindexCoursesEntries(
-      //     req.params
-      //   );
-      //   if (resultsEntries) {
-      //     return res.json(resultsEntries);
-      //   }
+        const resultsEntries = Test.institutoControllerValidateIndexCoursesEntries(
+          req.params
+        );
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       const { id_instituto } = req.params;
   
       const instituto = await Instituto.findByPk(id_instituto);
@@ -104,6 +108,10 @@ module.exports = {
     },
     // A Função de delete é responsável por deletar um instituto.
     async delete(req, res) {
+      const resultsEntries = Test.institutoControllerValidateDeleteEntries(req.params);
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       let { id_instituto } = req.params;
 
       const instituto = await Instituto.findByPk(id_instituto);

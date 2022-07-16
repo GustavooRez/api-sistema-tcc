@@ -3,9 +3,14 @@
 const Banca = require('../models/Banca');
 const Usuario = require('../models/Usuario');
 const Tfg = require('../models/Tfg');
+const Test = require('../test/FunctionsTest');
 
 module.exports = {
     async store(req, res) {
+        const resultsEntries = Test.bancaControllerValidateStoreEntries(req.body);
+          if (resultsEntries) {
+            return res.json(resultsEntries);
+          }
         const { id_tfg, id_usuario, dia_horario } = req.body;
 
         const usuario = await Usuario.findByPk(id_usuario);
@@ -33,6 +38,10 @@ module.exports = {
         }
     },
     async index(req, res) {
+      const resultsEntries = Test.bancaControllerValidateIndexEntries(req.params);
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       const { id_banca } = req.params;
 
       const banca = await Banca.findByPk(id_banca);
@@ -81,6 +90,10 @@ module.exports = {
       }
     },
     async delete(req, res) {
+      const resultsEntries = Test.bancaControllerValidateDeleteEntries(req.params);
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       const { id_banca } = req.params;
 
       const banca = await Banca.findByPk(id_banca);

@@ -3,10 +3,17 @@
 const Curso = require("../models/Curso");
 const Cronograma = require("../models/Cronograma");
 const Atividade = require("../models/Atividade");
+const Test = require("../test/FunctionsTest")
 
 module.exports = {
   // A Função store é responsável por fazer o armazenamento dos dados dos Cronogramas
   async store(req, res) {
+    const resultsEntries = Test.cronogramaControllerValidateStoreEntries(
+      req.body
+    );
+    if (resultsEntries) {
+      return res.json(resultsEntries);
+    }
     let { ano, semestre, id_curso } = req.body;
 
     const curso = await Curso.findByPk(id_curso);
@@ -29,12 +36,12 @@ module.exports = {
   },
   // A Função index é responsável por retornar os dados de um cronograma
   async index(req, res) {
-    //   const resultsEntries = Test.institutoControllerValidateIndexEntries(
-    //     req.params
-    //   );
-    //   if (resultsEntries) {
-    //     return res.json(resultsEntries);
-    //   }
+      const resultsEntries = Test.cronogramaControllerValidateIndexEntries(
+        req.params
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
     const { id_cronograma } = req.params;
 
     const cronograma = await Cronograma.findByPk(id_cronograma);
@@ -46,6 +53,10 @@ module.exports = {
     }
   },
   async indexActivities(req, res) {
+    const resultsEntries = Test.cronogramaControllerValidateIndexActivitiesEntries(req.params);
+    if (resultsEntries) {
+      return res.json(resultsEntries);
+    }
     const { id_cronograma } = req.params;
 
     const cronograma = await Cronograma.findByPk(id_cronograma);
@@ -87,6 +98,10 @@ module.exports = {
     }
   },
   async delete(req, res) {
+    const resultsEntries = Test.cronogramaControllerValidateDeleteEntries(req.params);
+    if (resultsEntries) {
+      return res.json(resultsEntries);
+    }
     let { id_cronograma } = req.params;
 
     const cronograma = await Cronograma.findByPk(id_cronograma);

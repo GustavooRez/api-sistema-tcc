@@ -8,6 +8,12 @@ const Test = require("../test/FunctionsTest");
 module.exports = {
     // A Função store é responsável por fazer o armazenamento dos Cursos
     async store(req, res) {
+      const resultsEntries = Test.cursoControllerValidateStoreEntries(
+        req.body
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
       let { nome, codigo, id_instituto } = req.body;
 
       const instituto = await Instituto.findByPk(id_instituto);
@@ -31,12 +37,12 @@ module.exports = {
     },
     // A Função index é responsável por retornar os dados de um curso
     async index(req, res) {
-      //   const resultsEntries = Test.institutoControllerValidateIndexEntries(
-      //     req.params
-      //   );
-      //   if (resultsEntries) {
-      //     return res.json(resultsEntries);
-      //   }
+        const resultsEntries = Test.cursoControllerValidateIndexEntries(
+          req.params
+        );
+        if (resultsEntries) {
+          return res.json(resultsEntries);
+        }
       const { id_curso } = req.params;
   
       const curso = await Curso.findByPk(id_curso);
@@ -53,6 +59,12 @@ module.exports = {
       return res.json(cursos);
     },
     async indexTimelines(req, res) {
+      const resultsEntries = Test.cursoControllerValidateIndexTimelinesEntries(
+        req.params
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
       const { id_curso } = req.params;
 
       const curso = await Curso.findByPk(id_curso);
@@ -91,6 +103,12 @@ module.exports = {
       }
     },
     async delete(req, res) {
+      const resultsEntries = Test.cursoControllerValidateDeleteEntries(
+        req.params
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
       let { id_curso } = req.params;
 
       const curso = await Curso.findByPk(id_curso);

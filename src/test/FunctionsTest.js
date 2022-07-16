@@ -119,5 +119,102 @@ class Test{
         if (data1.nota > 10 || data1.nota < 0) return {status: 400,error: "A nota deve ter valor entre 0 e 10"};
         return;
     }
+    static atividadeControllerValidateStoreEntries(data) {
+        if (!('data' in data)) return {status: 400,error: "O campo data é obrigatório"};
+        if (!('titulo' in data)) return {status: 400,error: "O campo titulo é obrigatório"};
+        if (!('descricao' in data)) return {status: 400,error: "O campo descricao é obrigatório"};
+        if (!('id_cronograma' in data)) return {status: 400,error: "O campo id_cronograma é obrigatório"};
+        return;
+    }
+    static atividadeControllerValidateIndexEntries(data) {
+        if (!('id_atividade' in data)) return {status: 400,error: "O campo id_atividade é obrigatório"};
+        return;
+    }
+    static atividadeControllerValidateDeleteEntries(data) {
+        if (!('id_atividade' in data)) return {status: 400,error: "O campo id_atividade é obrigatório"};
+        return;
+    }
+    static cronogramaControllerValidateStoreEntries(data) {
+        if (!('id_curso' in data)) return {status: 400,error: "O campo id_curso é obrigatório"};
+        if (!('ano' in data)) return {status: 400,error: "O campo ano é obrigatório"};
+        if (!('semestre' in data)) return {status: 400,error: "O campo semestre é obrigatório"};
+        return;
+    }
+    static cronogramaControllerValidateIndexEntries(data) {
+        if (!('id_cronograma' in data)) return {status: 400,error: "O campo id_cronograma é obrigatório"};
+        return;
+    }
+    static cronogramaControllerValidateDeleteEntries(data) {
+        if (!('id_cronograma' in data)) return {status: 400,error: "O campo id_cronograma é obrigatório"};
+        return;
+    }
+    static cronogramaControllerValidateIndexActivitiesEntries(data) {
+        if (!('id_cronograma' in data)) return {status: 400,error: "O campo id_cronograma é obrigatório"};
+        return;
+    }
+    static bancaControllerValidateStoreEntries(data) {
+        if (!('id_usuario' in data)) return {status: 400,error: "O campo id_usuario é obrigatório"};
+        if (!('id_tfg' in data)) return {status: 400,error: "O campo id_tfg é obrigatório"};
+        if (!('dia_horario' in data)) return {status: 400,error: "O campo dia_horario é obrigatório"};
+        return;
+    }
+    static bancaControllerValidateIndexEntries(data) {
+        if (!('id_banca' in data)) return {status: 400,error: "O campo id_banca é obrigatório"};
+        return;
+    }
+    static bancaControllerValidateDeleteEntries(data) {
+        if (!('id_banca' in data)) return {status: 400,error: "O campo id_banca é obrigatório"};
+        return;
+    }
+    static institutoControllerValidateStoreEntries(data) {
+        if (!('nome' in data)) return {status: 400,error: "O campo nome é obrigatório"};
+        if (!('id_universidade' in data)) return {status: 400,error: "O campo id_universidade é obrigatório"};
+        return;
+    }
+    static institutoControllerValidateIndexEntries(data) {
+        if (!('id_instituto' in data)) return {status: 400,error: "O campo id_instituto é obrigatório"};
+        return;
+    }
+    static institutoControllerValidateIndexCoursesEntries(data) {
+        if (!('id_instituto' in data)) return {status: 400,error: "O campo id_instituto é obrigatório"};
+        return;
+    }
+    static institutoControllerValidateDeleteEntries(data) {
+        if (!('id_instituto' in data)) return {status: 400,error: "O campo id_instituto é obrigatório"};
+        return;
+    }
+    static cursoControllerValidateStoreEntries(data) {
+        if (!('nome' in data)) return {status: 400,error: "O campo nome é obrigatório"};
+        if (!('codigo' in data)) return {status: 400,error: "O campo codigo é obrigatório"};
+        if (!('id_instituto' in data)) return {status: 400,error: "O campo id_instituto é obrigatório"};
+    }
+    static cursoControllerValidateIndexEntries(data) {
+        if (!('id_curso' in data)) return {status: 400,error: "O campo id_curso é obrigatório"};
+        return;
+    }
+    static cursoControllerValidateIndexTimelinesEntries(data) {
+        if (!('id_curso' in data)) return {status: 400,error: "O campo id_curso é obrigatório"};
+        return;
+    }
+    static cursoControllerValidateDeleteEntries(data) {
+        if (!('id_curso' in data)) return {status: 400,error: "O campo id_curso é obrigatório"};
+        return;
+    }
+    static universidadeControllerValidateStoreEntries(data) {
+        if (!('nome' in data)) return {status: 400,error: "O campo nome é obrigatório"};
+        return;
+    }
+    static universidadeControllerValidateIndexEntries(data) {
+        if (!('id_universidade' in data)) return {status: 400,error: "O campo id_universidade é obrigatório"};
+        return;
+    }
+    static universidadeControllerValidateDeleteEntries(data) {
+        if (!('id_universidade' in data)) return {status: 400,error: "O campo id_universidade é obrigatório"};
+        return;
+    }
+    static universidadeControllerValidateIndexInstitutesEntries(data) {
+        if (!('id_universidade' in data)) return {status: 400,error: "O campo id_universidade é obrigatório"};
+        return;
+    }
 }
 module.exports = Test;

@@ -7,6 +7,12 @@ const Test = require("../test/FunctionsTest");
 module.exports = {
   // A Função é store é responsável por cadastrar uma nova universidade
   async store(req, res) {
+    const resultsEntries = Test.universidadeControllerValidateStoreEntries(
+      req.body
+    );
+    if (resultsEntries) {
+      return res.json(resultsEntries);
+    }
     let { nome } = req.body;
 
     if (nome !== "") {
@@ -21,12 +27,12 @@ module.exports = {
   },
   // A Função index é responsável por retornar os dados de uma universidade
   async index(req, res) {
-    //   const resultsEntries = Test.universidadeControllerValidateIndexEntries(
-    //     req.params
-    //   );
-    //   if (resultsEntries) {
-    //     return res.json(resultsEntries);
-    //   }
+      const resultsEntries = Test.universidadeControllerValidateIndexEntries(
+        req.params
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
     const { id_universidade } = req.params;
 
     const universidade = await Universidade.findByPk(id_universidade);
@@ -45,12 +51,12 @@ module.exports = {
   },
   // A Função indexInstitute é responsável por retornar os institutos apartir de uma universidade
   async indexInstitutes(req, res) {
-    //   const resultsEntries = Test.universidadeControllerValidateIndexInstitutesEntries(
-    //     req.params
-    //   );
-    //   if (resultsEntries) {
-    //     return res.json(resultsEntries);
-    //   }
+      const resultsEntries = Test.universidadeControllerValidateIndexInstitutesEntries(
+        req.params
+      );
+      if (resultsEntries) {
+        return res.json(resultsEntries);
+      }
     const { id_universidade } = req.params;
 
     const universidade = await Universidade.findByPk(id_universidade);
@@ -92,6 +98,12 @@ module.exports = {
   },
   // A Função delete é responsável por deletar uma universidade
   async delete(req, res) {
+    const resultsEntries = Test.universidadeControllerValidateDeleteEntries(
+      req.params
+    );
+    if (resultsEntries) {
+      return res.json(resultsEntries);
+    }
     const { id_universidade } = req.params;
 
     const universidade = await Universidade.findByPk(id_universidade);
